@@ -1,0 +1,26 @@
+LazyArray.js - A JavaScript LazyArray implementation
+
+LazyArray.js exposes an 'extend' method, which accepts an object
+containing methods and properties to apply to the new function
+it returns. The only required property is a 'load' method, which
+should return an array.
+
+The load function you provided will automatically be called when
+an iterator function is called. The following functions are
+wrapped to call your load function: filter, forEach, every, map,
+some, reduce, and reduceRight.
+
+Usage:
+
+  var Query = LazyArray.extend({
+    load: function() {
+      return [1, 2, 3, 4, 5, 6, 7, 8];
+    }
+  });
+
+  var query = new Query();
+  query.loaded // => false
+  query.length // => 0
+  query.filter(function(v) { return v % 2 == 0 }) // => [2, 4, 6, 8]
+  query.loaded // => true
+  query.length // => 8
