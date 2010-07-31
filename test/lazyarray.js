@@ -39,13 +39,6 @@ test("extend", function() {
     LazyArray.extend({});
   }, "should raise if no load function is defined");
 
-  raises(function() {
-    LazyArray.extend({
-      load: function() {},
-      parent: true
-    });
-  }, "should raise if a property named parent is provided");
-
   var myLoadCalled = false
   var myLoad = function() {
     myLoadCalled = true;
